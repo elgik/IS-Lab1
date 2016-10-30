@@ -68,8 +68,16 @@
     <Compile Include="Controller\AuthController.cs" />
     <Compile Include="Domain\Context.cs" />
     <Compile Include="Domain\User.cs" />
+    <Compile Include="InformationSecurityDataSet.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>InformationSecurityDataSet.xsd</DependentUpon>
+    </Compile>
     <Compile Include="View\AdminWorkSpace.xaml.cs">
       <DependentUpon>AdminWorkSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserView.xaml.cs">
+      <DependentUpon>UserView.xaml</DependentUpon>
     </Compile>
     <Page Include="View\Auth.xaml">
       <Generator>MSBuild:Compile</Generator>
@@ -84,6 +92,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AdminWorkSpace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
@@ -107,6 +119,17 @@
       <LastGenOutput>Resources.Designer.cs</LastGenOutput>
     </EmbeddedResource>
     <None Include="App.config" />
+    <None Include="InformationSecurityDataSet.xsc">
+      <DependentUpon>InformationSecurityDataSet.xsd</DependentUpon>
+    </None>
+    <None Include="InformationSecurityDataSet.xsd">
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>InformationSecurityDataSet.Designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
+    </None>
+    <None Include="InformationSecurityDataSet.xss">
+      <DependentUpon>InformationSecurityDataSet.xsd</DependentUpon>
+    </None>
     <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>

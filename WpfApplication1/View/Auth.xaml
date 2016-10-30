@@ -19,7 +19,7 @@
         </Grid.ColumnDefinitions>
         <Label Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center" Grid.ColumnSpan="2">Введите логин и пароль</Label>
         <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Логин</Label>
-        <TextBox Name="Login" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Center">Admin</TextBox>
+        <TextBox Name="Login" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Center"></TextBox>
         <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Пароль</Label>
         <PasswordBox Name="Password" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" PasswordChanged="passChanged"/>
         <Label Name ="PassCheck"  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Visibility="Hidden">Пароль не соответствует требованиям</Label>
@@ -27,6 +27,6 @@
         <PasswordBox Name = "Repeat"  Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" PasswordChanged="repeatPassChanged"></PasswordBox>
         <Label Name="RepeatPassCheck" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Visibility="Hidden">Пароли не совпадают</Label>
         <Button Name="Exit" Grid.Row="7" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="110" Click="exitClicked">Exit</Button>
-        <Button Name="Ok" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="110" Click="OkClicked">Ok</Button>
+        <Button Name="Ok" Grid.Row="7" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="110" Click="OkClicked" IsDefault="True">Ok</Button>
     </Grid>
 </Window>

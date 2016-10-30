@@ -5,19 +5,26 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1.View"
         mc:Ignorable="d"
-        Title="Window1" Height="768" Width="1024">
+        Title="Window1" Height="480" Width="640">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="590*"></RowDefinition>
-            <RowDefinition Height="147*"></RowDefinition>
+            <RowDefinition Height="10*"></RowDefinition>
+            <RowDefinition/>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="0" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
-                  Name="GridUsers" AutoGenerateColumns="True">
+        <DataGrid Grid.Row="0" ColumnWidth="128*" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+                  Name="GridUsers" AutoGenerateColumns="True" IsReadOnly="True">
+            
         </DataGrid>
+        <Button Grid.Row="1" Grid.Column="0" Name="ChangePass" Click="ChangePass_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">Change password</Button>
+        <Button Grid.Row="1" Grid.Column="1" Name="Logout" Click="Logout_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">Logout</Button>
+        <Button Grid.Row="1" Grid.Column="2" Name="Exit" Click="Exit_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" >Exit</Button>
     </Grid>
 </Window>

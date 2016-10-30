@@ -22,7 +22,6 @@ namespace WpfApplication1
     /// </summary>
     public partial class MainWindow : Window
     {
-
         AuthController authController;
 
         public MainWindow()
@@ -38,7 +37,6 @@ namespace WpfApplication1
             }
             else
             {
-
                 Repeat.Visibility = Visibility.Hidden;
                 RepeatLabel.Visibility = Visibility.Hidden;
                 RepeatPassCheck.Visibility = Visibility.Hidden;
@@ -78,8 +76,14 @@ namespace WpfApplication1
                 else if(Login.Text == "Admin")
                 {
                     Hide();
-                    AdminWorkSpace window = new AdminWorkSpace();
-                    window.Show();
+                    AdminWorkSpace adminWindow = new AdminWorkSpace();
+                    adminWindow.Show();
+                }
+                else
+                {
+                    Hide();
+                    UserView userView = new UserView(AuthController.LoadByLogin(Login.Text));
+                    userView.Show();
                 }
             }
         }

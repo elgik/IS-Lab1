@@ -27,6 +27,28 @@ namespace WpfApplication1.View
             GridUsers.ItemsSource = adminWorkSpaceContoller.GetAllUsers();
         }
 
+        private void ChangePass_Click(object sender, RoutedEventArgs e)
+        {
+            User u = (User) GridUsers.SelectedItem;
+            UserView dialog = new UserView(u);
+            dialog.ShowDialog();
+        }
 
+        private void Logout_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+            MainWindow m = new MainWindow();
+            m.Show();
+        }
+
+        private void Exit_Click(object sender, RoutedEventArgs e)
+        {
+            Application.Current.Shutdown();
+        }
+
+        private void DataGridCell_MouseDoubleClick(object sender, MouseButtonEventArgs e)
+        {
+
+        }
     }
 }

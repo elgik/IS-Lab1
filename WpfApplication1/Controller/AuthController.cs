@@ -11,17 +11,14 @@ namespace WpfApplication1.Controller
 {
     class AuthController
     {
-        private Context db = new Context();       
+        private static Context db = new Context();       
 
         public bool firstLogin { get; set; }
 
         public AuthController()
         {
             db.Database.Log = (s => System.Diagnostics.Debug.WriteLine(s));
-            firstLogin = (db.Users
-                .Where(u => u.Login == "Admin")
-                .SingleOrDefault()) == null;
-
+            firstLogin = LoadByLogin("Admin") == null;
         }
 
         public void SaveDto(User entity)
@@ -34,9 +31,7 @@ namespace WpfApplication1.Controller
         public string Autorization(string login, string pass)
         {
             string validation = null;
-            var user = db.Users
-                .Where(u => u.Login == login)
-                .SingleOrDefault();
+            var user = LoadByLogin(login);
             if (user != null)
             {
                 if (user.Password != pass)
@@ -45,7 +40,15 @@ namespace WpfApplication1.Controller
                 }
             }
             else return validation = "Пользователь не найден";
+
             return validation;
+        }
+
+        public static User LoadByLogin(string login)
+        {
+            return db.Users
+                .Where(u => u.Login == login)
+                .SingleOrDefault();
         }
     }
 }
