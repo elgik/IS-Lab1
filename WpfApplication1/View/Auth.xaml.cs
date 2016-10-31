@@ -24,6 +24,8 @@ namespace WpfApplication1
     {
         AuthController authController;
 
+        int count = 0;       
+
         public MainWindow()
         {
             authController = new AuthController();
@@ -48,40 +50,57 @@ namespace WpfApplication1
 
         private void OkClicked(object sender, RoutedEventArgs e)
         {
-            if(PassCheck.Visibility == Visibility.Visible || Password.Password.Length == 0)
+            if (authController.firstLogin)
             {
-                MessageBox.Show("Пароль не соответствует требованиям:\r\nДлинна пароля меньше 8 символов\r\nИспользуйте строчные и заглавные буквы,\r\nцифры и символы", "Ошибка авторизации"
-                    , MessageBoxButton.OK,MessageBoxImage.Error);
-            }
-            else if(RepeatPassCheck.Visibility == Visibility.Visible || (RepeatPassCheck.Visibility == Visibility.Visible && Repeat.Password.Length == 0))
-            {
-                MessageBox.Show("Пароли не совпадают", "Ошибка авторизации"
-                    , MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-            else if (authController.firstLogin)
-            {
-                User u = new User();
-                u.Login = Login.Text;
-                u.Password = Password.Password;
-                u.isBlocked = false;
-                u.isRestricted = false;
-                authController.SaveDto(u);
+                if (PassCheck.Visibility == Visibility.Visible || Password.Password.Length == 0)
+                {
+                    MessageBox.Show("Пароль не соответствует требованиям:\r\nДлинна пароля меньше 8 символов\r\nИспользуйте строчные и заглавные буквы,\r\nцифры и символы", "Ошибка авторизации"
+                        , MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else if (RepeatPassCheck.Visibility == Visibility.Visible || (RepeatPassCheck.Visibility == Visibility.Visible && Repeat.Password.Length == 0))
+                {
+                    MessageBox.Show("Пароли не совпадают", "Ошибка авторизации"
+                        , MessageBoxButton.OK, MessageBoxImage.Error);
+                }
+                else
+                {
+                    User u = new User();
+                    u.Login = Login.Text;
+                    u.Password = Password.Password;
+                    u.isBlocked = false;
+                    u.isRestricted = false;
+                    AuthController.SaveDto(u);
+                    AuthController.CurrentUser = AuthController.LoadByLogin("Admin");
+                    AdminWorkSpace adminWindow = new AdminWorkSpace();
+                    Hide();
+                    adminWindow.Show();
+                }
             }
             else
             {
                 string sw = null;
-                sw = authController.Autorization(Login.Text, Password.Password);
-                if(sw != null)
+                sw = AuthController.Autorization(Login.Text, Password.Password);
+                if (sw != null)
+                {
+                    if (count == 3)
+                    {
+                        MessageBox.Show("ПОПЫТКИ ИСЧЕРПАНЫ, ПРИЛОЖЕНИЕ ОТКЛЮЧАЕТСЯ", "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
+                        Application.Current.Shutdown();
+                    }
                     MessageBox.Show(sw, "Ошибка авторизации", MessageBoxButton.OK, MessageBoxImage.Error);
-                else if(Login.Text == "Admin")
+                    if (sw == "Неправильный пароль") ++count;
+                }
+                else if (Login.Text == "Admin")
                 {
                     Hide();
+                    AuthController.CurrentUser = AuthController.LoadByLogin(Login.Text);
                     AdminWorkSpace adminWindow = new AdminWorkSpace();
                     adminWindow.Show();
                 }
                 else
                 {
                     Hide();
+                    AuthController.CurrentUser = AuthController.LoadByLogin(Login.Text);
                     UserView userView = new UserView(AuthController.LoadByLogin(Login.Text));
                     userView.Show();
                 }
@@ -96,7 +115,7 @@ namespace WpfApplication1
         private void passChanged(object sender, RoutedEventArgs e)
         {
             PasswordBox pas = sender as PasswordBox;
-            if(pas != null)
+            if (authController.firstLogin && pas != null)
             {
                 if (!(pas.Password.Any(p => char.IsDigit(p))
                     && pas.Password.Any(p => char.IsLetter(p))
@@ -110,12 +129,16 @@ namespace WpfApplication1
                 else
                     PassCheck.Visibility = Visibility.Hidden;
             }
+            else if (Console.CapsLock)
+                Caps.Visibility = Visibility.Visible;
+            else
+                Caps.Visibility = Visibility.Hidden;
         }
 
         private void repeatPassChanged(object sender, RoutedEventArgs e)
         {
             PasswordBox pas = sender as PasswordBox;
-            if (pas.Password != Password.Password)
+            if (authController.firstLogin && pas.Password != Password.Password)
             {
                 RepeatPassCheck.Visibility = Visibility.Visible;
             }
@@ -123,5 +146,9 @@ namespace WpfApplication1
                 RepeatPassCheck.Visibility = Visibility.Hidden;
         }
 
+        private void Manual_Click(object sender, RoutedEventArgs e)
+        {
+            MessageBox.Show("Программу реализовал студент группы ИДБ-13-15 Попов Денис", "Справка", MessageBoxButton.OK, MessageBoxImage.Information);
+        }
     }
 }

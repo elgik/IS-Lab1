@@ -1,0 +1,46 @@
+﻿<Window x:Class="WpfApplication1.View.UserDialogView"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        Title="IS" Height="300" Width="548" Background="Gray" ResizeMode="NoResize">
+    <Grid Margin="20,20,20,20">
+        <Grid.RowDefinitions>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition></ColumnDefinition>
+            <ColumnDefinition></ColumnDefinition>
+        </Grid.ColumnDefinitions>
+        <Label x:Name="Label1" Grid.Row="0" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center">Смена пароля</Label>
+        <Button Name="Delete" Grid.Row="0" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center" Width="110"
+                Click="Delete_Click">Удалить</Button>
+        <Label Grid.Row="1" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Логин</Label>
+        <TextBox Name="Login" Grid.Row="2" Grid.Column="0" HorizontalAlignment="Stretch"  VerticalAlignment="Center" IsReadOnly="False"></TextBox>
+        <Label Grid.Row="3" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Пароль</Label>
+        <Label Grid.Row="3" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Name="Caps" Margin="20,0,0,0" Visibility="Hidden">Включен Caps Lock</Label>
+        <PasswordBox Name="Password" Grid.Row="4" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" PasswordChanged="Password_PasswordChanged"/>
+        <Label Name ="PassCheck"  Grid.Row="4" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Visibility="Hidden">Пароль не соответствует требованиям</Label>
+        <Label Name="RepeatLabel" Grid.Row="5" Grid.Column="0" HorizontalAlignment="Left" VerticalAlignment="Center">Повторите пароль</Label>
+        <PasswordBox Name = "Repeat"  Grid.Row="6" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Center" PasswordChanged="Repeat_PasswordChanged"></PasswordBox>
+        <Label Name="RepeatPassCheck" Grid.Row="6" Grid.Column="1" HorizontalAlignment="Left" VerticalAlignment="Center" Margin="20,0,0,0" Visibility="Hidden">Пароли не совпадают</Label>
+        <StackPanel Grid.Row="7" Grid.Column="0" Orientation="Horizontal">
+            <Label>Block user</Label>
+            <CheckBox x:Name="BlockCheck" HorizontalAlignment="Right" Margin="55,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+        <StackPanel Grid.Row="7" Grid.Column="1" Orientation="Horizontal">
+            <Label>Add restriction</Label>
+            <CheckBox x:Name="RestrictionCheck" HorizontalAlignment="Right" Margin="55,0,0,0" VerticalAlignment="Center"/>
+        </StackPanel>
+        <Button Name="Close" Grid.Row="8" Grid.Column="1" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="110"
+                Click="Close_Click">Закрыть</Button>
+        <Button x:Name="Save" Grid.Row="8" Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Center"  Width="110" IsDefault="True"
+                Click="Save_Click">Сохранить</Button>
+    </Grid>
+</Window>

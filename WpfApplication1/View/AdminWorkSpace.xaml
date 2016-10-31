@@ -5,26 +5,45 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1.View"
         mc:Ignorable="d"
-        Title="Window1" Height="480" Width="640">
+        Title="IS Admin Workspace" Height="480" Width="640" Background="Gray">
     <Grid>
         <Grid.RowDefinitions>
+            <RowDefinition Height="Auto"></RowDefinition>
             <RowDefinition Height="10*"></RowDefinition>
-            <RowDefinition/>
+            <RowDefinition></RowDefinition>
+            <RowDefinition></RowDefinition>
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
             <ColumnDefinition></ColumnDefinition>
         </Grid.ColumnDefinitions>
-        <DataGrid Grid.Row="0" ColumnWidth="128*" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
+        <Menu Background="Gray">
+            <Menu Grid.Row="0" Grid.ColumnSpan="2" Background="Gray">
+                <MenuItem Header="Программа" BorderBrush="DarkGray">
+                    <MenuItem Name="ChangeAdminPass" Header="Сменить пароль администратора" Click="ChangePass_Click"></MenuItem>
+                    <MenuItem Name="NewUser1" Header="Добавить пользователя" Click="NewUser_Click"></MenuItem>
+                    <MenuItem Name="Manual" Header="Справка" Click="Manual_Click"></MenuItem>
+                    <MenuItem Name="ChangeUser" Header="Сменить пользователя" Click="Logout_Click"></MenuItem>
+                        <Separator></Separator>
+                    <MenuItem Header="Выйти" Click="Exit_Click"></MenuItem>
+                </MenuItem>
+            </Menu>
+        </Menu>
+        <DataGrid Grid.Row="1" ColumnWidth="128*" Grid.ColumnSpan="3" HorizontalAlignment="Stretch" VerticalAlignment="Stretch"
                   Name="GridUsers" AutoGenerateColumns="True" IsReadOnly="True">
             
         </DataGrid>
-        <Button Grid.Row="1" Grid.Column="0" Name="ChangePass" Click="ChangePass_Click"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">Change password</Button>
-        <Button Grid.Row="1" Grid.Column="1" Name="Logout" Click="Logout_Click"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">Logout</Button>
-        <Button Grid.Row="1" Grid.Column="2" Name="Exit" Click="Exit_Click"
-                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" >Exit</Button>
+        <TextBox Name="FindBox" Margin="20,0,0,0" HorizontalAlignment="Stretch" VerticalAlignment="Center" Grid.Row="2" Grid.Column="0"></TextBox>
+        <Button Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Width="110"
+                Name="NewUser" Click="NewUser_Click">Новый</Button>
+        <Button Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="110"
+                Name="Find" Click="Find_Click">Найти</Button>
+        <Button Grid.Row="3" Grid.Column="0" Name="ChangePass" Click="ChangePass_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">Изменить</Button>
+        <Button Grid.Row="3" Grid.Column="1" Name="Logout" Click="Logout_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">Перезайти</Button>
+        <Button Grid.Row="3" Grid.Column="2" Name="Exit" Click="Exit_Click"
+                HorizontalAlignment="Center" VerticalAlignment="Center" Width="110" >Выход</Button>
     </Grid>
 </Window>

@@ -9,9 +9,11 @@ using WpfApplication1.Domain;
 
 namespace WpfApplication1.Controller
 {
-    class AuthController
+    public class AuthController
     {
         private static Context db = new Context();       
+
+        public static User CurrentUser { get; set; }
 
         public bool firstLogin { get; set; }
 
@@ -21,27 +23,39 @@ namespace WpfApplication1.Controller
             firstLogin = LoadByLogin("Admin") == null;
         }
 
-        public void SaveDto(User entity)
+        public static void SaveDto(User entity)
         {
             
             db.Users.Add(entity);
             db.SaveChanges();
         }
+
+        public static void UpdateDto(User entity)
+        {
+            db.Entry(entity).State = EntityState.Modified;
+            db.SaveChanges();
+        }
         
-        public string Autorization(string login, string pass)
+        public static string Autorization(string login, string pass)
         {
             string validation = null;
             var user = LoadByLogin(login);
             if (user != null)
             {
                 if (user.Password != pass)
-                {
                     return validation = "Неправильный пароль";
-                }
+                else if (user.isBlocked)
+                    return validation = "Пользователь заблокирован";
             }
             else return validation = "Пользователь не найден";
-
+            CurrentUser = user;            
             return validation;
+        }
+
+        public static void DeleteDto(User entity)
+        {
+            db.Users.Remove(entity);
+            db.SaveChanges();
         }
 
         public static User LoadByLogin(string login)
@@ -49,6 +63,11 @@ namespace WpfApplication1.Controller
             return db.Users
                 .Where(u => u.Login == login)
                 .SingleOrDefault();
+        }
+
+        public static IEnumerable<User> GetAllUsers()
+        {
+            return db.Users.Select(u => u).ToList();
         }
     }
 }

@@ -64,7 +64,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Compile Include="Controller\AdminWorkSpaceContoller.cs" />
     <Compile Include="Controller\AuthController.cs" />
     <Compile Include="Domain\Context.cs" />
     <Compile Include="Domain\User.cs" />
@@ -75,6 +74,9 @@
     </Compile>
     <Compile Include="View\AdminWorkSpace.xaml.cs">
       <DependentUpon>AdminWorkSpace.xaml</DependentUpon>
+    </Compile>
+    <Compile Include="View\UserDialogView.xaml.cs">
+      <DependentUpon>UserDialogView.xaml</DependentUpon>
     </Compile>
     <Compile Include="View\UserView.xaml.cs">
       <DependentUpon>UserView.xaml</DependentUpon>
@@ -92,6 +94,10 @@
       <SubType>Code</SubType>
     </Compile>
     <Page Include="View\AdminWorkSpace.xaml">
+      <SubType>Designer</SubType>
+      <Generator>MSBuild:Compile</Generator>
+    </Page>
+    <Page Include="View\UserDialogView.xaml">
       <SubType>Designer</SubType>
       <Generator>MSBuild:Compile</Generator>
     </Page>
