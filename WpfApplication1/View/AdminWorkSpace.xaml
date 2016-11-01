@@ -5,7 +5,7 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:WpfApplication1.View"
         mc:Ignorable="d"
-        Title="IS Admin Workspace" Height="480" Width="640" Background="Gray">
+        Title="IS Lab1" Height="480" Width="640" Background="Gray">
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>
@@ -38,7 +38,7 @@
         <Button Grid.Row="2" Grid.Column="2" VerticalAlignment="Center" Width="110"
                 Name="NewUser" Click="NewUser_Click">Новый</Button>
         <Button Grid.Row="2" Grid.Column="1" VerticalAlignment="Center" Width="110"
-                Name="Find" Click="Find_Click">Найти</Button>
+                Name="Find" Click="Find_Click" IsDefault="True">Найти</Button>
         <Button Grid.Row="3" Grid.Column="0" Name="ChangePass" Click="ChangePass_Click"
                 HorizontalAlignment="Center" VerticalAlignment="Center" Width="110">Изменить</Button>
         <Button Grid.Row="3" Grid.Column="1" Name="Logout" Click="Logout_Click"

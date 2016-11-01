@@ -1,7 +1,7 @@
 ﻿<Window x:Class="WpfApplication1.View.UserView"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        Title="IS" Height="300" Width="547" Background="Gray" ResizeMode="NoResize">
+        Title="IS Lab1" Height="300" Width="547" Background="Gray" ResizeMode="NoResize">
     <Grid Margin="20,0,20,20">
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"></RowDefinition>

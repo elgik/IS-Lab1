@@ -10,7 +10,7 @@
 
 #pragma warning disable 1591
 
-namespace WpfApplication1 {
+namespace ISLab1 {
     
     
     /// <summary>
@@ -733,7 +733,7 @@ namespace WpfApplication1 {
         }
     }
 }
-namespace WpfApplication1.InformationSecurityDataSetTableAdapters {
+namespace ISLab1.InformationSecurityDataSetTableAdapters {
     
     
     /// <summary>
@@ -900,7 +900,7 @@ SELECT Id, Login, Password, isBlocked, isRestricted FROM Users WHERE (Id = @Id)"
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         private void InitConnection() {
             this._connection = new global::System.Data.SqlClient.SqlConnection();
-            this._connection.ConnectionString = global::WpfApplication1.Properties.Settings.Default.InformationSecurityConnectionString;
+            this._connection.ConnectionString = global::ISLab1.Properties.Settings.Default.InformationSecurityConnectionString;
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]

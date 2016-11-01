@@ -68,6 +68,11 @@ namespace WpfApplication1.View
             else if (selectedUser == null)
             {
                 User u = new User();
+                if (Login.Text == null || Login.Text == string.Empty)
+                {
+                    MessageBox.Show("Необходимо ввести логин", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
+                    return;
+                }
                 if(AuthController.LoadByLogin(Login.Text) != null)
                 {
                     MessageBox.Show("В базе уже есть пользователь с таким логином", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -84,6 +89,8 @@ namespace WpfApplication1.View
             else
             {
                 User u = AuthController.LoadByLogin(selectedUser.Login);
+                if (Login.Text == null || Login.Text == string.Empty)
+                    MessageBox.Show("Необходимо ввести логин", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
                 if (Login.Text != u.Login && AuthController.LoadByLogin(Login.Text) != null)
                 {
                     MessageBox.Show("В базе уже есть пользователь с таким логином", "Ошибка сохранения", MessageBoxButton.OK, MessageBoxImage.Error);
@@ -113,7 +120,8 @@ namespace WpfApplication1.View
                 if (!(pas.Password.Any(p => char.IsDigit(p))
                     && pas.Password.Any(p => char.IsLetter(p))
                     && pas.Password.Any(p => char.IsUpper(p))
-                    && pas.Password.Any(p => char.IsSymbol(p))
+                    && pas.Password.Any(p => !char.IsLetterOrDigit(p))
+                    && pas.Password.All(p => !char.IsWhiteSpace(p))
                     && pas.Password.Length > 8
                     ))
                 {
@@ -126,6 +134,7 @@ namespace WpfApplication1.View
                 Caps.Visibility = Visibility.Visible;
             else
                 Caps.Visibility = Visibility.Hidden;
+            Repeat_PasswordChanged(Repeat, new RoutedEventArgs());
         }
 
         private void Repeat_PasswordChanged(object sender, RoutedEventArgs e)

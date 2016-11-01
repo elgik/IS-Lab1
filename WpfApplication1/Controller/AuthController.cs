@@ -19,6 +19,8 @@ namespace WpfApplication1.Controller
 
         public AuthController()
         {
+            if (!db.Database.Exists())
+                db.Database.Create();
             db.Database.Log = (s => System.Diagnostics.Debug.WriteLine(s));
             firstLogin = LoadByLogin("Admin") == null;
         }

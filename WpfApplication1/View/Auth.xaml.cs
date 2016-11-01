@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using System.Text.RegularExpressions;
 using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
@@ -120,7 +121,8 @@ namespace WpfApplication1
                 if (!(pas.Password.Any(p => char.IsDigit(p))
                     && pas.Password.Any(p => char.IsLetter(p))
                     && pas.Password.Any(p => char.IsUpper(p))
-                    && pas.Password.Any(p => char.IsSymbol(p))
+                    && pas.Password.Any(p => !char.IsLetterOrDigit(p))
+                    && pas.Password.All(p => !char.IsWhiteSpace(p))
                     && pas.Password.Length > 8
                     ))
                 {
@@ -133,6 +135,7 @@ namespace WpfApplication1
                 Caps.Visibility = Visibility.Visible;
             else
                 Caps.Visibility = Visibility.Hidden;
+            repeatPassChanged(Repeat, new RoutedEventArgs());
         }
 
         private void repeatPassChanged(object sender, RoutedEventArgs e)
@@ -144,6 +147,7 @@ namespace WpfApplication1
             }
             else
                 RepeatPassCheck.Visibility = Visibility.Hidden;
+
         }
 
         private void Manual_Click(object sender, RoutedEventArgs e)
